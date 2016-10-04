@@ -35,10 +35,7 @@ function drawSquare(x, y, color="#FFF") {
 function drawMatrix(matrix, x, y) {
   matrix.forEach((row, index0) => {
     row.forEach((value, index1) => {
-      if (value === 1) {
-        let xf = x + index1*gridSize, yf = y+index0*gridSize;
-        drawSquare(xf, yf);
-      }
+      if (value === 1) {drawSquare(x + index1*gridSize, y+index0*gridSize)}
     });
   });
 }

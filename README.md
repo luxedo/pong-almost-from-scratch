@@ -8,7 +8,7 @@ The game is based in html5/canvas, CSS and ES6 javascript.
 * ~~Add `LICENSE.md` and `README.md`~~
 * ~~Create `html/canvas` base~~
 * Create the gameloop
-* Crate rendering functions
+* ~~Crate rendering functions~~
 * Design board
 * Create scoring system
 * Create paddle `class`
@@ -17,6 +17,7 @@ The game is based in html5/canvas, CSS and ES6 javascript.
 * ~~Host somewhere~~
 * Create start screen
 * Create enemy AI
+* Improve webpage
 
 All that while reporting
 
@@ -91,3 +92,33 @@ So, here is the first view of the game:
 For now, I'll be hosting it in [github pages](https://pages.github.com/) since it's easy deploy. Check it out [here](https://armlessjohn404.github.io/pong-almost-from-scratch/)
 
 ### Crate rendering functions
+
+The graphics in this game is not what one would call "realistic", so only one drawing function was created.
+```javascript
+function drawSquare(x, y, color="#FFF") {
+  Game.context.fillStyle = color;
+  Game.context.fillRect(x, y, gridSize, gridSize);
+}
+```
+Another three functions uses this drawing function to speed up the development:
+* `drawMatrix` which receives a boolean matrix to draw the dots.
+* `writeText` which receives a string and uses `drawMatrix` and an alphabeth to draw the text.
+* `drawLine` which receives two coordinates and draws a line between them.
+
+![first render](report-assets/first-render.png "first render")
+
+The letters were created in a separate file. Each letter is a boolean 5x3 matrix.
+```javascript
+let alphabeth = {
+  "A": [[1, 1, 1],[1, 0, 1],[1, 1, 1],[1, 0, 1],[1, 0, 1]],
+  "B": [[1, 1, 0],[1, 0, 1],[1, 1, 0],[1, 0, 1],[1, 1, 0]],
+  "C": [[0, 1, 1],[1, 0, 0],[1, 0, 0],[1, 0, 0],[0, 1, 1]],
+  "D": [[1, 1, 0],[1, 0, 1],[1, 0, 1],[1, 0, 1],[1, 1, 0]],
+  "E": [[1, 1, 1],[1, 0, 0],[1, 1, 0],[1, 0, 0],[1, 1, 1]],
+  "F": [[1, 1, 1],[1, 0, 0],[1, 1, 0],[1, 0, 0],[1, 0, 0]],
+  "G": [[1, 1, 1],[1, 0, 0],[1, 0, 1],[1, 0, 1],[1, 1, 1]],
+  "H": [[1, 0, 1],[1, 0, 1],[1, 1, 1],[1, 0, 1],[1, 0, 1]],
+  "I": [[0, 1, 0],[0, 1, 0],[0, 1, 0],[0, 1, 0],[0, 1, 0]],
+  ...
+```
+I changed a little bit the numbers `2`, `3`, `5` and `6` from the original just because I can
