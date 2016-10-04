@@ -14,7 +14,7 @@ The game is based in html5/canvas, CSS and ES6 javascript.
 * Create paddle `class`
 * Create ball `class`
 * Implement collision mechanics
-* Host somewhere
+* ~~Host somewhere~~
 * Create start screen
 * Create enemy AI
 
@@ -83,5 +83,9 @@ html {
 }
 ```
 So, here is the first view of the game:
-### Hello world!
+#### Hello world!
 ![hello-world!](report-assets/hello-world.png "hello-world!")
+
+* ### Host somewhere
+
+For now, I'll be hosting it in [github pages](https://pages.github.com/) since it's easy deploy. Check it out [here](https://armlessjohn404.github.io/pong-almost-from-scratch/)
