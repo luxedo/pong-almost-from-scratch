@@ -47,7 +47,7 @@ The `favicon.ico` was created using GIMP:
 
 The canvas is created in the `javascript`.
 
-We'll be using an ancient post from [Arthur Schreiber
+I'll be using an ancient post from [Arthur Schreiber
 ](http://nokarma.org/2011/02/02/javascript-game-development-the-game-loop/index.html) as our base for the gameloop and keyboard input.
 ```javascript
 "use strict"
@@ -121,4 +121,12 @@ let alphabeth = {
   "I": [[0, 1, 0],[0, 1, 0],[0, 1, 0],[0, 1, 0],[0, 1, 0]],
   ...
 ```
-I changed a little bit the numbers `2`, `3`, `5` and `6` from the original just because I can
+
+I changed a little bit the numbers `2`, `3`, `5` and `6` from the original just because I can.
+I've chosen 50 characters between letters, numbers and punctuation to use in the game.
+
+### Create the gameloop
+The gameloop was based on [Arthur Schreiber's
+](http://nokarma.org/2011/02/02/javascript-game-development-the-game-loop/index.html) post with some tweaks. With that, I can get the player's input and update the screen.
+
+![gameloop](report-assets/gameloop.gif "gameloop")
