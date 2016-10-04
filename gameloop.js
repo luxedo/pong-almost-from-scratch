@@ -27,11 +27,6 @@ let Game = {
 // keyboard handler
 var Key = {
   _pressed: {},
-  LEFT: 37,
-  UP: 38,
-  RIGHT: 39,
-  DOWN: 40,
-
   isDown: function(keyCode) {return this._pressed[keyCode]},
   onKeydown: function(event) {this._pressed[event.keyCode] = true},
   onKeyup: function(event) {delete this._pressed[event.keyCode]}
@@ -59,7 +54,9 @@ Game.start = function() {
 
   Game.context = Game.canvas.getContext("2d"); // Get canvas context
 
-  Game.player = new Player(50, 50);
+  // add sprites
+  Game.player1 = new Paddle(2*gridSize, (Game.height-8*gridSize)/2, 8*gridSize, 87, 83);
+  Game.player2 = new Paddle(Game.width-3*gridSize, (Game.height-8*gridSize)/2, 8*gridSize, 38, 40);
   Game.score = new Score(Game.width/2-5.5*gridSize, 5*gridSize, 0, 0);
 
   Game._onEachFrame(Game.run);
@@ -92,66 +89,12 @@ Game.draw = function() {
   // dashed line
   for (let i=3.5*gridSize; i<Game.height-4*gridSize; i+= 2*gridSize) {drawSquare(Game.width/2-gridSize/2, i)}
   // draw score
-  Game.score.draw(Game.context);
-  // Game.player.draw(Game.context);
+  Game.score.draw();
+  Game.player1.draw();
+  Game.player2.draw();
 };
 
 Game.update = function() {
-  Game.player.update();
-};
-
-class baseSprite {
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
-  }
-  draw() {}
-  update() {}
-}
-
-class Score extends baseSprite {
-  constructor(x, y, p1, p2) {
-    super(x, y);
-    this.p1 = p1;
-    this.p2 = p2;
-  }
-  draw() {
-    let offset = (""+this.p1).split("").length - 1;
-    writeText(this.x-(4*gridSize*offset), this.y, this.p1+" "+this.p2)
-  }
-}
-
-class Player {
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
-  }
-}
-
-Player.prototype.draw = function() {
-  Game.context.fillStyle = "#FFF";
-  Game.context.fillRect(this.x, this.y, 32, 32);
-};
-
-Player.prototype.moveLeft = function() {
-  this.x -= 1;
-};
-
-Player.prototype.moveRight = function() {
-  this.x += 1;
-};
-
-Player.prototype.moveUp = function() {
-  this.y -= 1;
-};
-
-Player.prototype.moveDown = function() {
-  this.y += 1;
-};
-
-Player.prototype.update = function() {
-  if (Key.isDown(Key.UP)) this.moveUp();
-  if (Key.isDown(Key.LEFT)) this.moveLeft();
-  if (Key.isDown(Key.DOWN)) this.moveDown();
-  if (Key.isDown(Key.RIGHT)) this.moveRight();
+  Game.player1.update();
+  Game.player2.update();
 };

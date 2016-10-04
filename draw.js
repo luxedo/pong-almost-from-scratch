@@ -20,6 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 "use strict"
 // Globals
 let gridSize = 12;
+let paddleStep = 5;
 // Functions
 function drawSquare(x, y, color="#FFF") {
   Game.context.fillStyle = color;
@@ -47,5 +48,42 @@ function drawLine(x0, y0, x1, y1) {
   let cos = (x1-x0)/length
   for (let i=0; i<length; i+=gridSize){
     drawSquare(x0+cos*i, y0+sin*i)
+  }
+}
+
+class BaseSprite {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+  draw() {}
+  update() {}
+}
+
+class Score extends BaseSprite {
+  constructor(x, y, p1, p2) {
+    super(x, y);
+    this.p1 = p1;
+    this.p2 = p2;
+  }
+  draw() {
+    let offset = (""+this.p1).split("").length - 1;
+    writeText(this.x-(4*gridSize*offset), this.y, this.p1+" "+this.p2)
+  }
+}
+
+class Paddle extends BaseSprite {
+  constructor(x, y, size, keyUp, keyDown) {
+    super(x, y);
+    this.size = size;
+    this.keyUp = keyUp;
+    this.keyDown = keyDown;
+  }
+  draw() {
+    drawLine(this.x, this.y, this.x, this.y+this.size)
+  }
+  update() {
+    if (Key.isDown(this.keyUp)) this.y -= paddleStep;
+    if (Key.isDown(this.keyDown)) this.y += paddleStep;
   }
 }
