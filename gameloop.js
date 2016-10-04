@@ -59,7 +59,8 @@ Game.start = function() {
 
   Game.context = Game.canvas.getContext("2d"); // Get canvas context
 
-  Game.player = new Player();
+  Game.player = new Player(50, 50);
+  Game.score = new Score(Game.width/2-5.5*gridSize, 5*gridSize, 0, 0);
 
   Game._onEachFrame(Game.run);
 };
@@ -85,27 +86,51 @@ Game.run = (function() {
 
 Game.draw = function() {
   Game.context.clearRect(0, 0, Game.width, Game.height);
+  // horizontal lines
   drawLine(gridSize, 3*gridSize, Game.width-gridSize, 3*gridSize)
   drawLine(gridSize, Game.height-4*gridSize, Game.width-gridSize, Game.height-4*gridSize)
-  for (let i=3.5*gridSize; i<Game.height-4*gridSize; i+= 2*gridSize) {
-    drawSquare(Game.width/2-gridSize/2, i)
-  }
-  drawLine(gridSize, Game.height-4*gridSize, Game.width-gridSize, Game.height-4*gridSize)
-  Game.player.draw(Game.context);
+  // dashed line
+  for (let i=3.5*gridSize; i<Game.height-4*gridSize; i+= 2*gridSize) {drawSquare(Game.width/2-gridSize/2, i)}
+  // draw score
+  Game.score.draw(Game.context);
+  // Game.player.draw(Game.context);
 };
 
 Game.update = function() {
   Game.player.update();
 };
 
-function Player() {
-  this.x = 0;
-  this.y = 0;
+class baseSprite {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+  draw() {}
+  update() {}
 }
 
-Player.prototype.draw = function(context) {
+class Score extends baseSprite {
+  constructor(x, y, p1, p2) {
+    super(x, y);
+    this.p1 = p1;
+    this.p2 = p2;
+  }
+  draw() {
+    let offset = (""+this.p1).split("").length - 1;
+    writeText(this.x-(4*gridSize*offset), this.y, this.p1+" "+this.p2)
+  }
+}
+
+class Player {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+}
+
+Player.prototype.draw = function() {
   Game.context.fillStyle = "#FFF";
-  context.fillRect(this.x, this.y, 32, 32);
+  Game.context.fillRect(this.x, this.y, 32, 32);
 };
 
 Player.prototype.moveLeft = function() {

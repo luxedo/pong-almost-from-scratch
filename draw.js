@@ -34,11 +34,11 @@ function drawMatrix(matrix, x, y) {
   });
 }
 
-function writeText(text, x, y) {
+function writeText(x, y, text) {
   text
     .split("")
-    .forEach((letter, index) =>
-      drawMatrix(alphabeth[letter.toUpperCase()], x+(index*4*gridSize), y))
+    .forEach((letter, index) => {
+      drawMatrix(alphabeth[letter.toUpperCase()], x+(index*4*gridSize), y)})
 }
 
 function drawLine(x0, y0, x1, y1) {

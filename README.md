@@ -129,9 +129,12 @@ I've chosen 50 characters between letters, numbers and punctuation to use in the
 The gameloop is the engine that renders the graphics on screen in the correct time.
 The gameloop was based on [Arthur Schreiber's
 ](http://nokarma.org/2011/02/02/javascript-game-development-the-game-loop/index.html) post with some tweaks. With that, I can get the player's input and update the screen.
-
 ![gameloop](report-assets/gameloop.gif "gameloop")
 
 ### Design board
 The board for the game are just two horizontal lines and a dashed line in the center.
 ![game-board](report-assets/game-board.png "game-board")
+
+## Create scoring system
+For the scoring system, an object was created that draws the score in the screen when it's `draw` method is called and it's easy to update the values. It inherits some properties from an object called `baseSprite`, that may be updated in the future.
+![scoring system](report-assets/score.gif "scoring system")
