@@ -11,8 +11,8 @@ The game is based in html5/canvas, CSS and ES6 javascript.
 * ~~Crate rendering functions~~
 * ~~Design board~~
 * ~~Create scoring system~~
-* Create paddle `class`
-* Create ball `class`
+* ~~Create paddle `class`~~
+* ~~Create ball `class`~~
 * Implement collision mechanics
 * ~~Host somewhere~~
 * Create start screen
@@ -136,9 +136,13 @@ The board for the game are just two horizontal lines and a dashed line in the ce
 ![game-board](report-assets/game-board.png "game-board")
 
 ## Scoring system
-For the scoring system, an object was created that draws the score in the screen when it's `draw` method is called and it's easy to update the values. It inherits some properties from a class called `BaseSprite`, that may be updated in the future.
+For the scoring system, an object was created that draws the score in the screen when it's `draw` method is called and it's easy to update the values. It inherits some properties from a class called `BaseSprite`, that may be updated in the future. There's two important methods in these classes, the `update` method, that recalculates the new postion for the sprite and the `draw` method which draws the sprite in the screen.
 ![scoring system](report-assets/score.gif "scoring system")
 
 ## Paddle class
-The `Paddle` class also inhertits from `BaseSprite`. They bind to the keys `W` and `S` for player1 and `up arrow` and `down arrow` for player2.
+The `Paddle` class also inhertits from `BaseSprite`. Two instances of the paddles are created in the game, they bind to the keys `W` and `S` for player1 and `up arrow` and `down arrow` for player2.
 ![paddles](report-assets/paddle.gif "paddles")
+
+## Ball class
+The `Ball` class also inhertits from `BaseSprite`. They contain two extra properties: `speed` and `direction` to make it move in the screen.
+![ball](report-assets/ball.gif "ball")

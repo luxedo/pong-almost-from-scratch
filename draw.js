@@ -87,3 +87,18 @@ class Paddle extends BaseSprite {
     if (Key.isDown(this.keyDown)) this.y += paddleStep;
   }
 }
+
+class Ball extends BaseSprite {
+  constructor(x, y, speed, direction) {
+    super(x, y);
+    this.speed = speed
+    this.direction = direction
+  }
+  draw() {
+    drawSquare(this.x, this.y)
+  }
+  update() {
+    this.x += this.speed*Math.cos(this.direction)
+    this.y += this.speed*Math.sin(this.direction)
+  }
+}

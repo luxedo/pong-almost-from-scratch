@@ -57,6 +57,7 @@ Game.start = function() {
   // add sprites
   Game.player1 = new Paddle(2*gridSize, (Game.height-8*gridSize)/2, 8*gridSize, 87, 83);
   Game.player2 = new Paddle(Game.width-3*gridSize, (Game.height-8*gridSize)/2, 8*gridSize, 38, 40);
+  Game.ball = new Ball(300, 300, 1, 0.5);
   Game.score = new Score(Game.width/2-5.5*gridSize, 5*gridSize, 0, 0);
 
   Game._onEachFrame(Game.run);
@@ -87,14 +88,18 @@ Game.draw = function() {
   drawLine(gridSize, 3*gridSize, Game.width-gridSize, 3*gridSize)
   drawLine(gridSize, Game.height-4*gridSize, Game.width-gridSize, Game.height-4*gridSize)
   // dashed line
-  for (let i=3.5*gridSize; i<Game.height-4*gridSize; i+= 2*gridSize) {drawSquare(Game.width/2-gridSize/2, i)}
+  for (let i=3.5*gridSize; i<Game.height-4*gridSize; i+= 2*gridSize) {
+    drawSquare(Game.width/2-gridSize/2, i)
+  }
   // draw score
   Game.score.draw();
+  Game.ball.draw();
   Game.player1.draw();
   Game.player2.draw();
 };
 
 Game.update = function() {
+  Game.ball.update();
   Game.player1.update();
   Game.player2.update();
 };
