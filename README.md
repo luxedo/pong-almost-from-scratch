@@ -13,10 +13,11 @@ The game is based in html5/canvas, CSS and ES6 javascript.
 * ~~Create scoring system~~
 * ~~Create paddle `class`~~
 * ~~Create ball `class`~~
-* Implement collision mechanics
+* ~~Implement collision mechanics~~
 * ~~Host somewhere~~
 * Create start screen
 * Create enemy AI
+* Add sounds
 * Improve webpage
 
 All that while reporting
@@ -129,20 +130,31 @@ I've chosen 50 characters between letters, numbers and punctuation to use in the
 The gameloop is the engine that renders the graphics on screen in the correct time.
 The gameloop was based on [Arthur Schreiber's
 ](http://nokarma.org/2011/02/02/javascript-game-development-the-game-loop/index.html) post with some tweaks. With that, I can get the player's input and update the screen.
+
 ![gameloop](report-assets/gameloop.gif "gameloop")
 
-### Design board
+### Board Design
 The board for the game are just two horizontal lines and a dashed line in the center.
+
 ![game-board](report-assets/game-board.png "game-board")
 
 ## Scoring system
 For the scoring system, an object was created that draws the score in the screen when it's `draw` method is called and it's easy to update the values. It inherits some properties from a class called `BaseSprite`, that may be updated in the future. There's two important methods in these classes, the `update` method, that recalculates the new postion for the sprite and the `draw` method which draws the sprite in the screen.
+
 ![scoring system](report-assets/score.gif "scoring system")
 
 ## Paddle class
 The `Paddle` class also inhertits from `BaseSprite`. Two instances of the paddles are created in the game, they bind to the keys `W` and `S` for player1 and `up arrow` and `down arrow` for player2.
+
 ![paddles](report-assets/paddle.gif "paddles")
 
 ## Ball class
 The `Ball` class also inhertits from `BaseSprite`. They contain two extra properties: `speed` and `direction` to make it move in the screen.
+
 ![ball](report-assets/ball.gif "ball")
+
+## Collision mechanics
+Since all the sprites are rectangles, the collision detection will be made with simple `if` statements, as described in [MDN](https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection).
+The collision is checked in the update methods of. If the collision occurs in the left or right side, it means that it has hit the paddles, the calculation of the direction is a little bit different.
+
+![collision](report-assets/collision.gif "collision")

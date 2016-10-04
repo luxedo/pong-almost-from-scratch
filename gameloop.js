@@ -55,10 +55,10 @@ Game.start = function() {
   Game.context = Game.canvas.getContext("2d"); // Get canvas context
 
   // add sprites
-  Game.player1 = new Paddle(2*gridSize, (Game.height-8*gridSize)/2, 8*gridSize, 87, 83);
-  Game.player2 = new Paddle(Game.width-3*gridSize, (Game.height-8*gridSize)/2, 8*gridSize, 38, 40);
-  Game.ball = new Ball(300, 300, 1, 0.5);
+  Game.player1 = new Paddle(2*gridSize, (Game.height-8*gridSize)/2, paddleLength, 87, 83, 4*gridSize, Game.height-4*gridSize);
+  Game.player2 = new Paddle(Game.width-3*gridSize, (Game.height-8*gridSize)/2, paddleLength, 38, 40, 4*gridSize, Game.height-4*gridSize);
   Game.score = new Score(Game.width/2-5.5*gridSize, 5*gridSize, 0, 0);
+  Game.spawnBall();
 
   Game._onEachFrame(Game.run);
 };
@@ -102,4 +102,39 @@ Game.update = function() {
   Game.ball.update();
   Game.player1.update();
   Game.player2.update();
+  // collision ball-paddles
+  if (Game.ball.x <= 3*gridSize && Game.ball.y+gridSize >= Game.player1.y && Game.ball.y <= Game.player1.y+paddleLength) {
+    let dy = (Game.ball.y-Game.player1.y+gridSize/2-paddleLength/2)/(paddleLength+2*gridSize)
+    let angle = dy*Math.PI;
+    Game.ball.direction = angle;
+    Game.ball.speed +=0.5;
+  } else if (Game.ball.x >= Game.width-4*gridSize && Game.ball.y+gridSize >= Game.player2.y && Game.ball.y <= Game.player2.y+paddleLength) {
+    let dy = (Game.ball.y-Game.player2.y+gridSize/2-paddleLength/2)/(paddleLength+2*gridSize)
+    let angle = (1-dy)*Math.PI;
+    Game.ball.direction = angle;
+    Game.ball.speed +=0.5;
+  }
+  // point score and respawn
+  if (Game.ball.x >= Game.width-2*gridSize) {
+    Game.score.p1 += 1;
+    Game.spawnBall("player2");
+  }
+  else if (Game.ball.x <= 2*gridSize) {
+    Game.score.p2 += 1;
+    Game.spawnBall("player1")
+  }
 };
+
+Game.spawnBall = function(side) {
+  let angle;
+  if (side === "player1") {
+    angle = (1+(Math.random()*1.6-0.8))*Math.PI/2;
+  } else if (side === "player2") {
+    angle = (Math.random()*1.6-0.8)*Math.PI/2;
+  } else {
+    angle = ((Math.random()>=0.5)+(Math.random()*1.6-0.8))*Math.PI/2;
+  }
+  let center = Game.width/2-gridSize/2;
+  let randomHeight = Math.random()*(Game.height-8*gridSize)+4*gridSize
+  Game.ball = new Ball(center, randomHeight, ballSpeed, angle, 4*gridSize, Game.height-5*gridSize);
+}

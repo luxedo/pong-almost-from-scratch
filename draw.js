@@ -20,7 +20,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 "use strict"
 // Globals
 let gridSize = 12;
-let paddleStep = 5;
+let paddleStep = 10;
+let paddleLength = 8*gridSize;
+let ballSpeed = 1;
 // Functions
 function drawSquare(x, y, color="#FFF") {
   Game.context.fillStyle = color;
@@ -73,11 +75,13 @@ class Score extends BaseSprite {
 }
 
 class Paddle extends BaseSprite {
-  constructor(x, y, size, keyUp, keyDown) {
+  constructor(x, y, size, keyUp, keyDown, top, bottom) {
     super(x, y);
     this.size = size;
     this.keyUp = keyUp;
     this.keyDown = keyDown;
+    this.top = top;
+    this.bottom = bottom;
   }
   draw() {
     drawLine(this.x, this.y, this.x, this.y+this.size)
@@ -85,19 +89,26 @@ class Paddle extends BaseSprite {
   update() {
     if (Key.isDown(this.keyUp)) this.y -= paddleStep;
     if (Key.isDown(this.keyDown)) this.y += paddleStep;
+    if (this.y <= this.top) this.y = this.top;
+    else if (this.y+this.size >= this.bottom) this.y = this.bottom-this.size;
   }
 }
 
 class Ball extends BaseSprite {
-  constructor(x, y, speed, direction) {
+  constructor(x, y, speed, direction, top, bottom) {
     super(x, y);
     this.speed = speed
     this.direction = direction
+    this.top = top;
+    this.bottom = bottom;
   }
   draw() {
     drawSquare(this.x, this.y)
   }
   update() {
+    if (this.y >= this.bottom || this.y <= this.top) {
+      this.direction *= -1
+    }
     this.x += this.speed*Math.cos(this.direction)
     this.y += this.speed*Math.sin(this.direction)
   }
