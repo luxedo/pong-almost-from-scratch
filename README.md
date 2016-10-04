@@ -1,5 +1,5 @@
 # PONG ALMOST FROM SCRATCH
-This is an attempt of making the game pong using modern programming languages
+This is an attempt of making the game pong using modern programming languages. The idea is to time the development and track the progress in this document.
 
 ## Tech
 The game is based in html5/canvas, CSS and ES6 javascript.
@@ -89,3 +89,5 @@ So, here is the first view of the game:
 ### Host somewhere
 
 For now, I'll be hosting it in [github pages](https://pages.github.com/) since it's easy deploy. Check it out [here](https://armlessjohn404.github.io/pong-almost-from-scratch/)
+
+### Crate rendering functions
