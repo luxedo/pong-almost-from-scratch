@@ -21,7 +21,7 @@ The game is based in html5/canvas, CSS and ES6 javascript.
 All that while reporting
 
 ## Progress reports
-* ### Create `html/canvas` base
+### Create `html/canvas` base
 
 The `html` file was created based on a simple template.
 ```html
@@ -86,6 +86,6 @@ So, here is the first view of the game:
 #### Hello world!
 ![hello-world!](report-assets/hello-world.png "hello-world!")
 
-* ### Host somewhere
+### Host somewhere
 
 For now, I'll be hosting it in [github pages](https://pages.github.com/) since it's easy deploy. Check it out [here](https://armlessjohn404.github.io/pong-almost-from-scratch/)
