@@ -85,6 +85,12 @@ Game.run = (function() {
 
 Game.draw = function() {
   Game.context.clearRect(0, 0, Game.width, Game.height);
+  drawLine(gridSize, 3*gridSize, Game.width-gridSize, 3*gridSize)
+  drawLine(gridSize, Game.height-4*gridSize, Game.width-gridSize, Game.height-4*gridSize)
+  for (let i=3.5*gridSize; i<Game.height-4*gridSize; i+= 2*gridSize) {
+    drawSquare(Game.width/2-gridSize/2, i)
+  }
+  drawLine(gridSize, Game.height-4*gridSize, Game.width-gridSize, Game.height-4*gridSize)
   Game.player.draw(Game.context);
 };
 

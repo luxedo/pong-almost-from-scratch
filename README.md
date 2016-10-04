@@ -7,9 +7,9 @@ The game is based in html5/canvas, CSS and ES6 javascript.
 ## Goals
 * ~~Add `LICENSE.md` and `README.md`~~
 * ~~Create `html/canvas` base~~
-* Create the gameloop
+* ~~Create the gameloop~~
 * ~~Crate rendering functions~~
-* Design board
+* ~~Design board~~
 * Create scoring system
 * Create paddle `class`
 * Create ball `class`
@@ -126,7 +126,12 @@ I changed a little bit the numbers `2`, `3`, `5` and `6` from the original just 
 I've chosen 50 characters between letters, numbers and punctuation to use in the game.
 
 ### Create the gameloop
+The gameloop is the engine that renders the graphics on screen in the correct time.
 The gameloop was based on [Arthur Schreiber's
 ](http://nokarma.org/2011/02/02/javascript-game-development-the-game-loop/index.html) post with some tweaks. With that, I can get the player's input and update the screen.
 
 ![gameloop](report-assets/gameloop.gif "gameloop")
+
+### Design board
+The board for the game are just two horizontal lines and a dashed line in the center.
+![game-board](report-assets/game-board.png "game-board")
