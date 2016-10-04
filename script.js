@@ -17,3 +17,17 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+"use strict"
+let Game = {
+  fps: 60,
+  width: 800,
+  height: 600
+};
+Game.canvas = document.createElement("canvas"); // Create canvas
+Game.canvas.setAttribute("id", "game");
+Game.canvas.width = Game.width;
+Game.canvas.height = Game.height;
+
+document.getElementById("game-frame").appendChild(Game.canvas); // Add canvas to game-frame
+
+Game.context = Game.canvas.getContext("2d"); // Get canvas context

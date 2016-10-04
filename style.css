@@ -17,3 +17,17 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+html {
+  background-color: #444;
+}
+#game-frame {
+  position: relative;
+}
+
+#game {
+  background-color: #000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: 150px 0 0 -400px;
+}
