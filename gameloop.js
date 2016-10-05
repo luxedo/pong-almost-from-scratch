@@ -18,8 +18,9 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 "use strict"
+const VERSION = "v1.0-beta";
 // keyboard handler
-var Key = {
+let Key = {
   _pressed: {},
   isDown: function(keyCode) {return this._pressed[keyCode]},
   onKeydown: function(event) {this._pressed[event.keyCode] = true},
@@ -224,6 +225,7 @@ startScreen.draw = function() {
   let o3 = "CREDITS";
   let b1 = "ENTER - GO                       ESC - GO BACK"
   let b2 = "PLAYER1 - W/S                PLAYER2 - UP/DOWN"
+  let b3 = VERSION;
   let menuSize = 5;
   let hintSize = 3;
   writeText((Game.width-t1.length*4*gridSize)/2, gridSize*5, t1);
@@ -231,8 +233,9 @@ startScreen.draw = function() {
   writeText((Game.width-o1.length*4*menuSize)/2, gridSize*25, o1, menuSize);
   writeText((Game.width-o2.length*4*menuSize)/2, gridSize*30, o2, menuSize);
   writeText((Game.width-o3.length*4*menuSize)/2, gridSize*35, o3, menuSize);
-  writeText((Game.width-b1.length*4*hintSize)/2, Game.height-gridSize*7, b1, hintSize);
-  writeText((Game.width-b2.length*4*hintSize)/2, Game.height-gridSize*5, b2, hintSize);
+  writeText((Game.width-b1.length*4*hintSize)/2, Game.height-hintSize*35, b1, hintSize);
+  writeText((Game.width-b2.length*4*hintSize)/2, Game.height-hintSize*28, b2, hintSize);
+  writeText((Game.width-b3.length*4*hintSize)/2, Game.height-hintSize*14, b3, hintSize);
   startScreen.cursor.draw();
 }
 
