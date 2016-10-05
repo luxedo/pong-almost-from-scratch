@@ -205,3 +205,18 @@ Game.blip1Sound.play()
 PAUSE! That was the progress until October 5th, 2016 at 00:00 (BRT).
 At this stage the game is mostly done. But there's still some bugs and room for improvement.
 Tomorrow I'll be improving the webpage, getting some feedback and fixing some bugs prior to release.
+
+## 12:20 - Released for closed beta
+With minor tweaks, the game was released. I'll be listing the requested bugs an features here. While I wait for feedback, I'll be working in the webpage view.
+
+* Fix ball launching too vertically - `me`, `Ule`
+* Fix ball launching from the walls - `me`
+* Improve collisions. Ball is tunneling through the paddles sometimes - `me`, `Pagode`, `Luh`
+* Ball crossed from the middle of the paddle (timing?) - `Pagode`
+* Improve letter `N` readability - `Ule`
+* Browser window moves when pressing the arrow keys - `Luh`
+
+## 13:40 - Improve webpage
+The webpage received a footer element and a few CSS to make it even neater.
+
+![new webpage](report-assets/new-webpage.png "new webpage")
