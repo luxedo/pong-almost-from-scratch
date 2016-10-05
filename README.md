@@ -1,6 +1,8 @@
 # PONG ALMOST FROM SCRATCH
 This is an attempt of making the game pong using modern programming languages. The idea is to time the development and track the progress and the time it took to get in each stage in this document. If possible I want to finish this project in under 24 h.
 
+Check it out [here](https://armlessjohn404.github.io/pong-almost-from-scratch/)
+
 The game is based in html5/canvas, CSS and ES6 javascript.
 
 ## Goals
@@ -23,7 +25,7 @@ The game is based in html5/canvas, CSS and ES6 javascript.
 * ~~List requests/bugs~~
 * ~~Fix requests/bugs~~
 * ~~Add gameover~~
-* Finished!
+* ~~Finished!~~
 
 All that while reporting
 
@@ -31,7 +33,7 @@ All that while reporting
 00:00 - START! This project has really started at October 4th, 2016 at 11:30 (BRT). I'm timing each step and will be placing the timestamp along with the achieved goal.
 
 ### 00:15 - LICENSE
-This project is under a `GNU GPL3` license. You can do whatever you wish with this.
+This project is under a `GNU GPL3` license. Have fun! 😉
 
 ### 01:00 - Create `html/canvas` base
 
@@ -134,10 +136,10 @@ let alphabeth = {
 ```
 
 I changed a little bit the numbers `2`, `3`, `5` and `6` from the original just because I can.
-I've chosen 50 characters between letters, numbers and punctuation to use in the game.
+I've chosen 53 characters between letters, numbers and punctuation to use in the game.
 
 ### 04:00 - Create the gameloop
-The gameloop is the engine that renders the graphics on screen in the correct time.
+The gameloop is the engine that keeps rendering the graphics on screen.
 The gameloop was based on [Arthur Schreiber's
 ](http://nokarma.org/2011/02/02/javascript-game-development-the-game-loop/index.html) post with some tweaks. With that, I can get the player's input and update the screen.
 
@@ -150,7 +152,6 @@ The board for the game are just two horizontal lines and a dashed line in the ce
 
 ## 05:10 - Scoring system
 For the scoring system, an object was created that draws the score in the screen when it's `draw` method is called and it's easy to update the values. It inherits some properties from a class called `BaseSprite`, that may be updated in the future. There's two important methods in these classes, the `update` method, that recalculates the new postion for the sprite and the `draw` method which draws the sprite in the screen.
-
 
 ![scoring system](report-assets/score.gif "scoring system")
 
@@ -166,12 +167,12 @@ The `Ball` class also inhertits from `BaseSprite`. They contain two extra proper
 
 ## 08:00 - Collision mechanics
 Since all the sprites are rectangles, the collision detection will be made with simple `if` statements, as described in [MDN](https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection).
-The collision is checked in the update methods of. If the collision occurs in the left or right side, it means that it has hit the paddles, the calculation of the direction is a little bit different.
+The collision is checked in the update methods. If the collision occurs in the left or right side of the ball, it means that it has hit the paddles, the calculation of the direction is a little bit different.
 
 ![collision](report-assets/collision.gif "collision")
 
 ## 10:00 - Start screen/ credits screen
-For splitting the screens into game states, I created objects with `init`, `draw` and `update` methods corresponding with each screen. Also a function that overwrites the gameloop's corresponding methods. Then it's just a matter of calling this function and passing the corresponding screen object.
+For splitting the screens into game states, I created objects with `init`, `draw` and `update` methods corresponding with each screen. Also a function that overwrites the gameloop's corresponding methods. Then it's just a matter of calling this function and passing the corresponding screen object to change the screen/state.
 
 ![start screen](report-assets/start-screen.png "start screen")
 
@@ -226,11 +227,20 @@ The webpage received a footer element and a few CSS to make it even neater.
 ## 15:50 - Fixed the requests
 Thanks to the playtesters `Luh`, `Pagode` and `Ule` for giving feedback.
 
-## - Add gameover
+## 16:40 - Add gameover
 Since there's no point in playing forever, I added two more screens, one to chose the number of rounds and a gameover screen. No much difficulty in implementing those, just a matter of controlling some global variables.
 
 ![gameover](report-assets/gameover.png "gameover")
 
 ![options](report-assets/options.png "options")
 
-## Finish!!
+## 17:00 - Finish!!
+Well, that was quite fun indeed. It's been a steep learning curve in several subjects.
+
+It's interesting to see that a landmark in computer games can be reproduced in under 24h using modern technologies. And yes, I know that this is far from what you would call "from scratch" comparing with the tech available back then, but at least I made the drawing functions and worked with them. Maybe with the aid of a game engine this time can be reduced to a couple of hours, but then, where's the fun in that?
+
+Since I said I'll be dedicating 24h to this project, I plan to release one patch for the game if there's enough feedback.
+
+Thanks again to the guys that provided the audio assets for free and to the playtesters.
+
+#### Bye!
