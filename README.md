@@ -16,12 +16,12 @@ The game is based in html5/canvas, CSS and ES6 javascript.
 * ~~Implement collision mechanics~~
 * ~~Host somewhere~~
 * ~~Create start screen~~
-* Create options screen
 * ~~Create credits screen~~
-* Create enemy AI
+* ~~Create enemy AI~~
 * Add sounds
 * Improve webpage
 * Get playtesters feedback
+* List requests/bugs
 * Fix requests/bugs
 * Finished!
 
@@ -170,3 +170,19 @@ For splitting the screens into game states, I created objects with `init`, `draw
 ![start screen](report-assets/start-screen.png "start screen")
 
 ![credits screen](report-assets/credits-screen.png "credits screen")
+
+## Enemy AI
+The game mode in which the player plays against an AI borrows all the methods from the 2 player mode, but it removes the key bindings for the `player2` and extends the update method with the following:
+```javascript
+  // calculate the distance between the center of the paddle and the ball
+  let centerDelta = ball.center, paddle.center
+  // limit movement to be at most paddleStep
+  if (Math.abs(centerDelta) > 10) {
+    Game.player2.y += paddleStep*(centerDelta>0?1:-1);
+  } else {
+  // move slowly if possible
+    Game.player2.y += centerDelta;
+  }
+  // update the rest of the game
+  versusScreen.update()
+```

@@ -40,7 +40,6 @@ let startScreen = {}
 let enemyScreen = {}
 let versusScreen = {}
 let creditsScreen = {}
-let gameOver = {}
 
 Game._onEachFrame = (function() {
   if (window.RequestAnimationFrame) {
@@ -203,19 +202,21 @@ creditsScreen.init = () => {
   Game.context.clearRect(0, 0, Game.width, Game.height);
   let t1 = "PONG ALMOST FROM SCRATCH"
   let m1 = "This is an attempt of making the game pong using modern";
-  let m2 = "programming languages. You can find more information about";
-  let m3 = "the project in it's github page:";
-  let m4 = "https://github.com/ArmlessJohn404/pong-almost-from-scratch"
+  let m2 = "programming languages. The AI enemy is vicious!"
+  let m3 = "You can find more information about the project in it's";
+  let m4 = "github page:";
+  let m5 = "https://github.com/ArmlessJohn404/pong-almost-from-scratch"
   let b1 = "Copyright (C) 2016  Luiz Eduardo Amaral"
   let b2 = "<luizamaral306(at)gmail.com>"
-  let b3 = "This software is under a GNU GPL3 license. Have fun!"
+  let b3 = "This software is under a GNU GPL3 license. Have fun! :)"
   let creditsTitleSize = 5;
   let creditsSize = 3;
   writeText(50, gridSize*5, t1, creditsTitleSize);
   writeText(50, gridSize*5+creditsTitleSize*21, m1, creditsSize);
   writeText(50, gridSize*5+creditsTitleSize*21+creditsSize*7, m2, creditsSize);
-  writeText(50, gridSize*5+creditsTitleSize*21+creditsSize*14, m3, creditsSize);
+  writeText(50, gridSize*5+creditsTitleSize*21+creditsSize*21, m3, creditsSize);
   writeText(50, gridSize*5+creditsTitleSize*21+creditsSize*28, m4, creditsSize);
+  writeText(50, gridSize*5+creditsTitleSize*21+creditsSize*42, m5, creditsSize);
   writeText(50, Game.height-(gridSize*5+creditsSize*21), b1, creditsSize);
   writeText(50, Game.height-(gridSize*5+creditsSize*14), b2, creditsSize);
   writeText(50, Game.height-(gridSize*5+creditsSize*7), b3, creditsSize);
@@ -223,3 +224,20 @@ creditsScreen.init = () => {
 
 creditsScreen.update = () => {if (Key.isDown(27)) Game.changeState(startScreen);}
 creditsScreen.draw = () => {}
+
+// enemy screen
+enemyScreen.init = () => {
+  versusScreen.init()
+  Game.player2.keyUp = undefined;
+  Game.player2.keyDown = undefined;
+};
+enemyScreen.draw = versusScreen.draw;
+enemyScreen.update = () => {
+  let centerDelta = Game.ball.y+gridSize/2 - Game.player2.y - paddleLength/2
+  if (Math.abs(centerDelta) > 10) {
+    Game.player2.y += paddleStep*(centerDelta>0?1:-1);
+  } else {
+    Game.player2.y += centerDelta;
+  }
+  versusScreen.update()
+};
