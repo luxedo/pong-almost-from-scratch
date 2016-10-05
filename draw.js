@@ -110,6 +110,7 @@ class Ball extends BaseSprite {
   update() {
     if (this.y >= this.bottom || this.y <= this.top) {
       this.direction *= -1
+      Game.blip1()
     }
     this.x += this.speed*Math.cos(this.direction)
     this.y += this.speed*Math.sin(this.direction)
@@ -139,10 +140,12 @@ class Cursor {
       if (Key.isDown(38) || Key.isDown(87)) {
         this.current-=1
         this.timeout = Date.now()+200
+        Game.blip1();
       };
       if (Key.isDown(40) || Key.isDown(83)) {
         this.current+=1
         this.timeout = Date.now()+200
+        Game.blip2();
       };
       if (this.current >= this.positions.length) this.current = 0;
       if (this.current < 0) this.current = this.positions.length-1;

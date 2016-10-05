@@ -1,7 +1,6 @@
 # PONG ALMOST FROM SCRATCH
-This is an attempt of making the game pong using modern programming languages. The idea is to time the development and track the progress in this document.
+This is an attempt of making the game pong using modern programming languages. The idea is to time the development and track the progress and the time it took to get in each stage in this document. If possible I want to finish this project in under 24 h.
 
-## Tech
 The game is based in html5/canvas, CSS and ES6 javascript.
 
 ## Goals
@@ -18,7 +17,7 @@ The game is based in html5/canvas, CSS and ES6 javascript.
 * ~~Create start screen~~
 * ~~Create credits screen~~
 * ~~Create enemy AI~~
-* Add sounds
+* ~~Add sounds~~
 * Improve webpage
 * Get playtesters feedback
 * List requests/bugs
@@ -28,7 +27,12 @@ The game is based in html5/canvas, CSS and ES6 javascript.
 All that while reporting
 
 ## Progress reports
-### Create `html/canvas` base
+00:00 - START! This project has really started at October 4th, 2016 at 11:30 (BRT). I'm timing each step and will be placing the timestamp along with the achieved goal.
+
+### 00:15 - LICENSE
+This project is under a `GNU GPL3` license. You can do whatever you wish with this.
+
+### 01:00 - Create `html/canvas` base
 
 The `html` file was created based on a simple template.
 ```html
@@ -93,11 +97,11 @@ So, here is the first view of the game:
 #### Hello world!
 ![hello-world!](report-assets/hello-world.png "hello-world!")
 
-### Host somewhere
+### 01:10 - Host somewhere
 
 For now, I'll be hosting it in [github pages](https://pages.github.com/) since it's easy deploy. Check it out [here](https://armlessjohn404.github.io/pong-almost-from-scratch/)
 
-### Crate rendering functions
+### 03:20 - Crate rendering functions
 
 The graphics in this game is not what one would call "realistic", so only one drawing function was created.
 ```javascript
@@ -131,48 +135,49 @@ let alphabeth = {
 I changed a little bit the numbers `2`, `3`, `5` and `6` from the original just because I can.
 I've chosen 50 characters between letters, numbers and punctuation to use in the game.
 
-### Create the gameloop
+### 04:00 - Create the gameloop
 The gameloop is the engine that renders the graphics on screen in the correct time.
 The gameloop was based on [Arthur Schreiber's
 ](http://nokarma.org/2011/02/02/javascript-game-development-the-game-loop/index.html) post with some tweaks. With that, I can get the player's input and update the screen.
 
 ![gameloop](report-assets/gameloop.gif "gameloop")
 
-### Board Design
+### 04:20 - Board Design
 The board for the game are just two horizontal lines and a dashed line in the center.
 
 ![game-board](report-assets/game-board.png "game-board")
 
-## Scoring system
+## 05:10 - Scoring system
 For the scoring system, an object was created that draws the score in the screen when it's `draw` method is called and it's easy to update the values. It inherits some properties from a class called `BaseSprite`, that may be updated in the future. There's two important methods in these classes, the `update` method, that recalculates the new postion for the sprite and the `draw` method which draws the sprite in the screen.
+
 
 ![scoring system](report-assets/score.gif "scoring system")
 
-## Paddle class
+## 05:30 - Paddle class
 The `Paddle` class also inhertits from `BaseSprite`. Two instances of the paddles are created in the game, they bind to the keys `W` and `S` for player1 and `up arrow` and `down arrow` for player2.
 
 ![paddles](report-assets/paddle.gif "paddles")
 
-## Ball class
+## 05:55 - Ball class
 The `Ball` class also inhertits from `BaseSprite`. They contain two extra properties: `speed` and `direction` to make it move in the screen.
 
 ![ball](report-assets/ball.gif "ball")
 
-## Collision mechanics
+## 08:00 - Collision mechanics
 Since all the sprites are rectangles, the collision detection will be made with simple `if` statements, as described in [MDN](https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection).
 The collision is checked in the update methods of. If the collision occurs in the left or right side, it means that it has hit the paddles, the calculation of the direction is a little bit different.
 
 ![collision](report-assets/collision.gif "collision")
 
-## Start screen/ credits screen
-For splitting the screens into game states, I created objects with `init`, `draw` and `update` methods corresponding with each screen. Also a function that overwrites the gameloop's corresponding methods.
+## 10:00 - Start screen/ credits screen
+For splitting the screens into game states, I created objects with `init`, `draw` and `update` methods corresponding with each screen. Also a function that overwrites the gameloop's corresponding methods. Then it's just a matter of calling this function and passing the corresponding screen object.
 
 ![start screen](report-assets/start-screen.png "start screen")
 
 ![credits screen](report-assets/credits-screen.png "credits screen")
 
-## Enemy AI
-The game mode in which the player plays against an AI borrows all the methods from the 2 player mode, but it removes the key bindings for the `player2` and extends the update method with the following:
+## 11:00 - Enemy AI
+The game mode in which the player plays against an AI borrows all the methods from the 2 player mode, but it removes the key bindings for the `player2` and extends the `update` method with the following:
 ```javascript
   // calculate the distance between the center of the paddle and the ball
   let centerDelta = ball.center, paddle.center
@@ -186,3 +191,17 @@ The game mode in which the player plays against an AI borrows all the methods fr
   // update the rest of the game
   versusScreen.update()
 ```
+
+## 11:40 - Sounds
+The sounds are some free `wav` files i've found at [Freesound.org](https://www.freesound.org).
+Thanks to `noisecollector`, `projectsu012` and `n-audioman`.
+I used `HTMLMediaElements` to play the sounds.
+```javascript
+Game.blip1Sound = new Audio(blip1URL);
+Game.blip1Sound.play()
+```
+
+## 12:00 - Interlude
+PAUSE! That was the progress until October 5th, 2016 at 00:00 (BRT).
+At this stage the game is mostly done. But there's still some bugs and room for improvement.
+Tomorrow I'll be improving the webpage, getting some feedback and fixing some bugs prior to release.

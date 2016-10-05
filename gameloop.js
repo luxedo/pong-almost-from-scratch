@@ -34,6 +34,10 @@ let Game = {
   width: 800,
   height: 600
 };
+let blip1URL = "https://www.freesound.org/people/NoiseCollector/sounds/4391/download/4391__noisecollector__pongblipf-5.wav";
+let blip2URL = "https://www.freesound.org/people/NoiseCollector/sounds/4390/download/4390__noisecollector__pongblipf-4.wav";
+let blip3URL = "https://www.freesound.org/people/ProjectsU012/sounds/333785/download/333785__projectsu012__8-bit-failure-sound.wav";
+let blip4URL = "https://www.freesound.org/people/n_audioman/sounds/275896/download/275896__n-audioman__coin02.wav";
 
 // Game states
 let startScreen = {}
@@ -58,6 +62,40 @@ Game.start = function() {
   Game.canvas.setAttribute("id", "game");
   Game.canvas.width = Game.width;
   Game.canvas.height = Game.height;
+
+  // add sounds
+  Game.blip1Sound = new Audio(blip1URL);
+  Game.blip2Sound = new Audio(blip2URL);
+  Game.blip3Sound = new Audio(blip3URL);
+  Game.blip4Sound = new Audio(blip4URL);
+  Game.blip1 = () => {
+    Game.blip1Sound.play();
+    setTimeout(()=>{
+      Game.blip1Sound.pause();
+      Game.blip1Sound.currentTime = 100;
+    }, 100);
+  }
+  Game.blip2 = () => {
+    Game.blip2Sound.play();
+    setTimeout(()=>{
+      Game.blip2Sound.pause();
+      Game.blip2Sound.currentTime = 100;
+    }, 100);
+  }
+  Game.blip3 = () => {
+    Game.blip3Sound.play();
+    setTimeout(()=>{
+      Game.blip3Sound.pause();
+      Game.blip3Sound.currentTime = 0;
+    }, 200);
+  }
+  Game.blip4 = () => {
+    Game.blip4Sound.play();
+    setTimeout(()=>{
+      Game.blip4Sound.pause();
+      Game.blip4Sound.currentTime = -200;
+    }, 200);
+  }
 
   document.getElementById("game-frame").appendChild(Game.canvas); // Add canvas to game-frame
 
@@ -114,7 +152,10 @@ versusScreen.draw = function() {
   Game.player2.draw();
 };
 versusScreen.update = function() {
-  if (Key.isDown(27)) Game.changeState(startScreen);
+  if (Key.isDown(27)) {
+    Game.changeState(startScreen)
+    Game.blip4();
+  };
   Game.ball.update();
   Game.player1.update();
   Game.player2.update();
@@ -125,21 +166,25 @@ versusScreen.update = function() {
     let angle = dy*Math.PI;
     Game.ball.direction = angle;
     Game.ball.speed +=0.5;
+    Game.blip2()
   } else if (Game.ball.x >= Game.width-4*gridSize && Game.ball.y+gridSize >= Game.player2.y && Game.ball.y <= Game.player2.y+paddleLength) {
     let dy = (Game.ball.y-Game.player2.y+gridSize/2-paddleLength/2)/(paddleLength+2*gridSize)
     let angle = (1-dy)*Math.PI;
     Game.ball.direction = angle;
     Game.ball.speed +=0.5;
+    Game.blip2()
   }
 
   // score and respawn
   if (Game.ball.x >= Game.width-2*gridSize) {
     Game.score.p1 += 1;
     versusScreen.spawnBall("player2");
+    Game.blip3();
   }
   else if (Game.ball.x <= 2*gridSize) {
     Game.score.p2 += 1;
     versusScreen.spawnBall("player1")
+    Game.blip3();
   }
 };
 versusScreen.spawnBall = function(side) {
@@ -191,6 +236,7 @@ startScreen.draw = function() {
 startScreen.update = function() {
   startScreen.cursor.update()
   if (Key.isDown(13)) {
+    Game.blip4();
     if (startScreen.cursor.current === 0) Game.changeState(enemyScreen);
     else if (startScreen.cursor.current === 1) Game.changeState(versusScreen);
     else if (startScreen.cursor.current === 2) Game.changeState(creditsScreen);
@@ -222,7 +268,10 @@ creditsScreen.init = () => {
   writeText(50, Game.height-(gridSize*5+creditsSize*7), b3, creditsSize);
 }
 
-creditsScreen.update = () => {if (Key.isDown(27)) Game.changeState(startScreen);}
+creditsScreen.update = () => {if (Key.isDown(27)) {
+  Game.blip4();
+  Game.changeState(startScreen);
+}}
 creditsScreen.draw = () => {}
 
 // enemy screen
