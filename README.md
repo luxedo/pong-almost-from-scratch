@@ -21,6 +21,9 @@ The game is based in html5/canvas, CSS and ES6 javascript.
 * Create enemy AI
 * Add sounds
 * Improve webpage
+* Get playtesters feedback
+* Fix requests/bugs
+* Finished!
 
 All that while reporting
 

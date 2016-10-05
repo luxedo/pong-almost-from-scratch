@@ -39,7 +39,6 @@ let Game = {
 let startScreen = {}
 let enemyScreen = {}
 let versusScreen = {}
-let optionsScreen = {}
 let creditsScreen = {}
 let gameOver = {}
 
@@ -167,8 +166,7 @@ startScreen.init = function() {
   let positions = [
     [(Game.width-cursorWidth-2*cursorThickness)/2, gridSize*23.5],
     [(Game.width-cursorWidth-2*cursorThickness)/2, gridSize*28.5],
-    [(Game.width-cursorWidth-2*cursorThickness)/2, gridSize*33.5],
-    [(Game.width-cursorWidth-2*cursorThickness)/2, gridSize*38.5]
+    [(Game.width-cursorWidth-2*cursorThickness)/2, gridSize*33.5]
   ]
   startScreen.cursor = new Cursor(cursorWidth, cursorHeight, positions, cursorThickness)
 }
@@ -179,15 +177,15 @@ startScreen.draw = function() {
   let t2 = "FROM SCRATCH";
   let o1 = "1P START";
   let o2 = "2P START";
-  let o3 = "OPTIONS";
-  let o4 = "CREDITS";
+  let o3 = "CREDITS";
+  let b1 = "ENTER - GO            ESC - GO BACK"
   let menuSize = 5;
   writeText((Game.width-t1.length*4*gridSize)/2, gridSize*5, t1);
   writeText((Game.width-t2.length*4*gridSize)/2, gridSize*12, t2);
   writeText((Game.width-o1.length*4*menuSize)/2, gridSize*25, o1, menuSize);
   writeText((Game.width-o2.length*4*menuSize)/2, gridSize*30, o2, menuSize);
   writeText((Game.width-o3.length*4*menuSize)/2, gridSize*35, o3, menuSize);
-  writeText((Game.width-o4.length*4*menuSize)/2, gridSize*40, o4, menuSize);
+  writeText((Game.width-b1.length*4*menuSize)/2, Game.height-gridSize*5, b1, menuSize);
   startScreen.cursor.draw();
 }
 
@@ -196,8 +194,7 @@ startScreen.update = function() {
   if (Key.isDown(13)) {
     if (startScreen.cursor.current === 0) Game.changeState(enemyScreen);
     else if (startScreen.cursor.current === 1) Game.changeState(versusScreen);
-    else if (startScreen.cursor.current === 2) Game.changeState(optionsScreen);
-    else if (startScreen.cursor.current === 3) Game.changeState(creditsScreen);
+    else if (startScreen.cursor.current === 2) Game.changeState(creditsScreen);
   }
 }
 
