@@ -37,7 +37,7 @@ html, body {
 }
 
 #game-frame {
-    padding-bottom: 125px;
+    padding-bottom: 150px;
 }
 
 .container {
@@ -50,7 +50,7 @@ html, body {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 125px;
+  height: 150px;
 }
 
 a:link, a:visited, a:hover, a:active {

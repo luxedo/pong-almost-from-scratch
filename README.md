@@ -18,10 +18,11 @@ The game is based in html5/canvas, CSS and ES6 javascript.
 * ~~Create credits screen~~
 * ~~Create enemy AI~~
 * ~~Add sounds~~
-* Improve webpage
-* Get playtesters feedback
-* List requests/bugs
-* Fix requests/bugs
+* ~~Improve webpage~~
+* ~~Get playtesters feedback~~
+* ~~List requests/bugs~~
+* ~~Fix requests/bugs~~
+* Add gameover
 * Finished!
 
 All that while reporting
@@ -209,14 +210,15 @@ Tomorrow I'll be improving the webpage, getting some feedback and fixing some bu
 ## 12:20 - Released for closed beta
 With minor tweaks, the game was released. I'll be listing the requested bugs an features here. While I wait for feedback, I'll be working in the webpage view.
 
-* Fix ball launching too vertically - `me`, `Ule`
-* Fix ball launching from the walls - `me`
-* Improve collisions. Ball is tunneling through the paddles sometimes - `me`, `Pagode`, `Luh`
-* Ball crossed from the middle of the paddle (timing?) - `Pagode`
-* Improve letter `N` readability - `Ule`
-* Browser window moves when pressing the arrow keys - `Luh`
+* ~~Fix ball launching too vertically - `me`, `Ule`~~
+* ~~Fix ball launching from the walls - `me`~~
+* ~~Improve collisions. Ball is tunneling through the paddles sometimes - `me`, `Pagode`, `Luh`~~
+* ~~Ball crossed in the middle of the paddle (timing?) - `Pagode`~~
+* ~~Improve letter `N` readability - `Ule`~~
+* ~~Browser window moves when pressing the arrow keys - `Luh`~~
+* ~~Prevent ball from sucking in the walls (not 100% but fair enough)~~
 
-## 13:40 - Improve webpage
+## 13:40 - Improved webpage
 The webpage received a footer element and a few CSS to make it even neater.
 
 ![new webpage](report-assets/new-webpage.png "new webpage")

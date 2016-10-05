@@ -23,6 +23,8 @@ let gridSize = 12;
 let paddleStep = 10;
 let paddleLength = 8*gridSize;
 let ballSpeed = 10;
+let marginSize = 3*gridSize;
+let letterSpacing = 4*gridSize;
 
 // Functions
 function drawSquare(x, y, size=gridSize, color="#FFF") {
@@ -108,12 +110,14 @@ class Ball extends BaseSprite {
     drawSquare(this.x, this.y)
   }
   update() {
-    if (this.y >= this.bottom || this.y <= this.top) {
-      this.direction *= -1
-      Game.blip1()
-    }
     this.x += this.speed*Math.cos(this.direction)
     this.y += this.speed*Math.sin(this.direction)
+    if (this.y >= this.bottom || this.y <= this.top) {
+      this.direction *= -1
+      this.x += this.speed*Math.cos(this.direction)
+      this.y += this.speed*Math.sin(this.direction)
+      Game.blip1()
+    }
   }
 }
 
