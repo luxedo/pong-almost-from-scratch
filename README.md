@@ -15,7 +15,9 @@ The game is based in html5/canvas, CSS and ES6 javascript.
 * ~~Create ball `class`~~
 * ~~Implement collision mechanics~~
 * ~~Host somewhere~~
-* Create start screen
+* ~~Create start screen~~
+* Create options screen
+* ~~Create credits screen~~
 * Create enemy AI
 * Add sounds
 * Improve webpage
@@ -108,7 +110,7 @@ Another three functions uses this drawing function to speed up the development:
 
 ![first render](report-assets/first-render.png "first render")
 
-The letters were created in a separate file. Each letter is a boolean 5x3 matrix.
+The letters were created in a separate file. Each letter is a boolean 5x3 matrix and is mono spaced.
 ```javascript
 let alphabeth = {
   "A": [[1, 1, 1],[1, 0, 1],[1, 1, 1],[1, 0, 1],[1, 0, 1]],
@@ -158,3 +160,10 @@ Since all the sprites are rectangles, the collision detection will be made with 
 The collision is checked in the update methods of. If the collision occurs in the left or right side, it means that it has hit the paddles, the calculation of the direction is a little bit different.
 
 ![collision](report-assets/collision.gif "collision")
+
+## Start screen/ credits screen
+For splitting the screens into game states, I created objects with `init`, `draw` and `update` methods corresponding with each screen. Also a function that overwrites the gameloop's corresponding methods.
+
+![start screen](report-assets/start-screen.png "start screen")
+
+![credits screen](report-assets/credits-screen.png "credits screen")

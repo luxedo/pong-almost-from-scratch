@@ -22,37 +22,39 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 let gridSize = 12;
 let paddleStep = 10;
 let paddleLength = 8*gridSize;
-let ballSpeed = 1;
+let ballSpeed = 10;
+
 // Functions
-function drawSquare(x, y, color="#FFF") {
+function drawSquare(x, y, size=gridSize, color="#FFF") {
   Game.context.fillStyle = color;
-  Game.context.fillRect(x, y, gridSize, gridSize);
+  Game.context.fillRect(x, y, size, size);
 }
 
-function drawMatrix(matrix, x, y) {
+function drawMatrix(x, y, matrix, size=gridSize, color="#FFF") {
   matrix.forEach((row, index0) => {
     row.forEach((value, index1) => {
-      if (value === 1) {drawSquare(x + index1*gridSize, y+index0*gridSize)}
+      if (value === 1) {drawSquare(x + index1*size, y+index0*size, size, color)}
     });
   });
 }
 
-function writeText(x, y, text) {
+function writeText(x, y, text, size=gridSize, color="#FFF") {
   text
     .split("")
     .forEach((letter, index) => {
-      drawMatrix(alphabeth[letter.toUpperCase()], x+(index*4*gridSize), y)})
+      drawMatrix(x+(index*4*size), y, alphabeth[letter.toUpperCase()], size, color)})
 }
 
-function drawLine(x0, y0, x1, y1) {
+function drawLine(x0, y0, x1, y1, size=gridSize, color="#FFF") {
   let length = Math.sqrt(Math.pow(x1-x0, 2)+Math.pow(y1-y0, 2));
   let sin = (y1-y0)/length
   let cos = (x1-x0)/length
-  for (let i=0; i<length; i+=gridSize){
-    drawSquare(x0+cos*i, y0+sin*i)
+  for (let i=0; i<=length; i+=size){
+    drawSquare(x0+cos*i, y0+sin*i, size, color)
   }
 }
 
+// Classes
 class BaseSprite {
   constructor(x, y) {
     this.x = x;
@@ -111,5 +113,39 @@ class Ball extends BaseSprite {
     }
     this.x += this.speed*Math.cos(this.direction)
     this.y += this.speed*Math.sin(this.direction)
+  }
+}
+
+class Cursor {
+  constructor(w, h, positions, size=gridSize, color="#FFF") {
+    this.w = w;
+    this.h = h;
+    this.size = size;
+    this.color = color;
+    this.positions = positions;
+    this.current = 0;
+    this.timeout = Date.now()+200
+  }
+  draw() {
+    let x = this.positions[this.current][0];
+    let y = this.positions[this.current][1];
+    drawLine(x, y, x+this.w, y, this.size, this.color);
+    drawLine(x, y, x, y+this.h, this.size, this.color);
+    drawLine(x+this.w, y+this.h, x, y+this.h, this.size, this.color);
+    drawLine(x+this.w, y+this.h, x+this.w, y, this.size, this.color);
+  }
+  update() {
+    if (Date.now()>this.timeout) {
+      if (Key.isDown(38) || Key.isDown(87)) {
+        this.current-=1
+        this.timeout = Date.now()+200
+      };
+      if (Key.isDown(40) || Key.isDown(83)) {
+        this.current+=1
+        this.timeout = Date.now()+200
+      };
+      if (this.current >= this.positions.length) this.current = 0;
+      if (this.current < 0) this.current = this.positions.length-1;
+    }
   }
 }
