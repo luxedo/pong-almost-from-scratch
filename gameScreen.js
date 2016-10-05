@@ -35,6 +35,7 @@ versusScreen.init = function() {
     38, 40, borderTop, borderBottom);
   Game.score = new Score(boardWidth/2-letterSpacing, borderTop+2*gridSize, 0, 0);
   versusScreen.spawnBall();
+  gameMode = "versus";
 }
 
 versusScreen.draw = function() {
@@ -88,8 +89,12 @@ versusScreen.update = function() {
   }
   else if (Game.ball.x <= 2*gridSize) {
     Game.score.p2 += 1;
-    versusScreen.spawnBall("player1")
+    versusScreen.spawnBall("player1");
     Game.blip3();
+  }
+  if (Game.score.p1 >= rounds || Game.score.p2 >= rounds) {
+    winner = (Game.score.p1>=rounds?true: false);
+    Game.changeState(gameoverScreen);
   }
 };
 
@@ -114,6 +119,7 @@ enemyScreen.init = () => {
   versusScreen.init()
   Game.player2.keyUp = undefined;
   Game.player2.keyDown = undefined;
+  gameMode = "enemy";
 };
 
 enemyScreen.draw = versusScreen.draw;

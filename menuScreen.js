@@ -25,9 +25,10 @@ startScreen.init = function() {
   let cursorHeight = gridSize*4;
   let cursorThickness = 5;
   let positions = [
-    [(Game.width-cursorWidth-2*cursorThickness)/2, gridSize*23.5],
-    [(Game.width-cursorWidth-2*cursorThickness)/2, gridSize*28.5],
-    [(Game.width-cursorWidth-2*cursorThickness)/2, gridSize*33.5]
+    [(Game.width-cursorWidth-2*cursorThickness)/2, gridSize*20.5],
+    [(Game.width-cursorWidth-2*cursorThickness)/2, gridSize*25.5],
+    [(Game.width-cursorWidth-2*cursorThickness)/2, gridSize*30.5],
+    [(Game.width-cursorWidth-2*cursorThickness)/2, gridSize*35.5]
   ]
   startScreen.cursor = new Cursor(cursorWidth, cursorHeight, positions, cursorThickness)
 }
@@ -38,7 +39,8 @@ startScreen.draw = function() {
   let t2 = "FROM SCRATCH";
   let o1 = "1P START";
   let o2 = "2P START";
-  let o3 = "CREDITS";
+  let o3 = "OPTIONS";
+  let o4 = "CREDITS";
   let b1 = "ENTER - GO                       ESC - GO BACK"
   let b2 = "PLAYER1 - W/S                PLAYER2 - UP/DOWN"
   let b3 = VERSION;
@@ -46,9 +48,10 @@ startScreen.draw = function() {
   let hintSize = 3;
   writeText((Game.width-t1.length*4*gridSize)/2, gridSize*5, t1);
   writeText((Game.width-t2.length*4*gridSize)/2, gridSize*12, t2);
-  writeText((Game.width-o1.length*4*menuSize)/2, gridSize*25, o1, menuSize);
-  writeText((Game.width-o2.length*4*menuSize)/2, gridSize*30, o2, menuSize);
-  writeText((Game.width-o3.length*4*menuSize)/2, gridSize*35, o3, menuSize);
+  writeText((Game.width-o1.length*4*menuSize)/2, gridSize*22, o1, menuSize);
+  writeText((Game.width-o2.length*4*menuSize)/2, gridSize*27, o2, menuSize);
+  writeText((Game.width-o3.length*4*menuSize)/2, gridSize*32, o3, menuSize);
+  writeText((Game.width-o4.length*4*menuSize)/2, gridSize*37, o4, menuSize);
   writeText((Game.width-b1.length*4*hintSize)/2, Game.height-hintSize*35, b1, hintSize);
   writeText((Game.width-b2.length*4*hintSize)/2, Game.height-hintSize*28, b2, hintSize);
   writeText((Game.width-b3.length*4*hintSize)/2, Game.height-hintSize*14, b3, hintSize);
@@ -61,7 +64,8 @@ startScreen.update = function() {
     Game.blip4();
     if (startScreen.cursor.current === 0) Game.changeState(enemyScreen);
     else if (startScreen.cursor.current === 1) Game.changeState(versusScreen);
-    else if (startScreen.cursor.current === 2) Game.changeState(creditsScreen);
+    else if (startScreen.cursor.current === 2) Game.changeState(roundsScreen);
+    else if (startScreen.cursor.current === 3) Game.changeState(creditsScreen);
   }
 }
 
@@ -103,3 +107,94 @@ creditsScreen.update = () => {if (Key.isDown(27)) {
   Game.changeState(startScreen);
 }}
 creditsScreen.draw = () => {}
+
+// gameover screen
+gameoverScreen.init = function() {
+  let cursorWidth = gridSize*20;
+  let cursorHeight = gridSize*4;
+  let cursorThickness = 5;
+  let positions = [
+    [(Game.width-cursorWidth-2*cursorThickness)/2, gridSize*28.5],
+    [(Game.width-cursorWidth-2*cursorThickness)/2, gridSize*33.5]
+  ]
+  gameoverScreen.cursor = new Cursor(cursorWidth, cursorHeight, positions, cursorThickness)
+}
+
+gameoverScreen.draw = function() {
+  Game.context.clearRect(0, 0, Game.width, Game.height);
+  let t1 = "GAMEOVER";
+  let t2;
+  if (gameMode === "enemy") {t2 = "YOU "+(winner?"WIN":"LOSE")}
+  else {t2 = "PLAYER "+(winner?"1":"2")+"WINS"}
+  let o2 = "PLAY AGAIN";
+  let o3 = "MENU";
+  let b3 = VERSION;
+  let menuSize = 5;
+  let hintSize = 3;
+  writeText((Game.width-t1.length*4*gridSize)/2, gridSize*5, t1);
+  writeText((Game.width-t2.length*4*gridSize)/2, gridSize*15, t2);
+  writeText((Game.width-o2.length*4*menuSize)/2, gridSize*30, o2, menuSize);
+  writeText((Game.width-o3.length*4*menuSize)/2, gridSize*35, o3, menuSize);
+  writeText((Game.width-b3.length*4*hintSize)/2, Game.height-hintSize*14, b3, hintSize);
+  gameoverScreen.cursor.draw();
+}
+
+gameoverScreen.update = function() {
+  gameoverScreen.cursor.update()
+  if (Key.isDown(13)) {
+    Game.blip4();
+    if (gameoverScreen.cursor.current === 0) {
+      if (gameMode === "enemy") Game.changeState(enemyScreen);
+      if (gameMode === "versus") Game.changeState(versusScreen);
+    }
+    else if (gameoverScreen.cursor.current === 1) setTimeout(()=>Game.changeState(startScreen), 100);
+  }
+}
+
+// rounds screen
+roundsScreen.init = function() {
+  roundsScreen.timeout = Date.now() + 100;
+  let cursorWidth = gridSize*20;
+  let cursorHeight = gridSize*4;
+  let cursorThickness = 5;
+  let positions = [
+    [(Game.width-cursorWidth-2*cursorThickness)/2, gridSize*28.5],
+    [(Game.width-cursorWidth-2*cursorThickness)/2, gridSize*33.5]
+  ]
+  roundsScreen.cursor = new Cursor(cursorWidth, cursorHeight, positions, cursorThickness)
+}
+
+roundsScreen.draw = function() {
+  Game.context.clearRect(0, 0, Game.width, Game.height);
+  let t1 = "OPTIONS";
+  let t2 = String(rounds);
+  let o2 = "ROUNDS";
+  let o3 = "MENU";
+  let b3 = VERSION;
+  let menuSize = 5;
+  let hintSize = 3;
+  writeText((Game.width-t1.length*4*gridSize)/2, gridSize*10, t1);
+  writeText((Game.width-t2.length*4*gridSize)/2, gridSize*22, t2);
+  writeText((Game.width-o2.length*4*menuSize)/2, gridSize*30, o2, menuSize);
+  writeText((Game.width-o3.length*4*menuSize)/2, gridSize*35, o3, menuSize);
+  writeText((Game.width-b3.length*4*hintSize)/2, Game.height-hintSize*14, b3, hintSize);
+  roundsScreen.cursor.draw();
+}
+
+roundsScreen.update = function() {
+  roundsScreen.cursor.update()
+  if (Key.isDown(13)) {
+    if (roundsScreen.cursor.current === 1) setTimeout(()=>Game.changeState(startScreen), 100);
+    else if (roundsScreen.cursor.current === 0) {
+      if (roundsScreen.timeout < Date.now()) {
+        Game.blip4();
+        roundsScreen.timeout = Date.now()+200;
+        rounds += 1;
+        if (rounds > 15) rounds = 2;
+      }
+    }
+  } else if (Key.isDown(27)) {
+    Game.blip4();
+    setTimeout(()=>Game.changeState(startScreen), 100)
+  }
+}

@@ -22,7 +22,7 @@ The game is based in html5/canvas, CSS and ES6 javascript.
 * ~~Get playtesters feedback~~
 * ~~List requests/bugs~~
 * ~~Fix requests/bugs~~
-* Add gameover
+* ~~Add gameover~~
 * Finished!
 
 All that while reporting
@@ -222,3 +222,15 @@ With minor tweaks, the game was released. I'll be listing the requested bugs an 
 The webpage received a footer element and a few CSS to make it even neater.
 
 ![new webpage](report-assets/new-webpage.png "new webpage")
+
+## 15:50 - Fixed the requests
+Thanks to the playtesters `Luh`, `Pagode` and `Ule` for giving feedback.
+
+## - Add gameover
+Since there's no point in playing forever, I added two more screens, one to chose the number of rounds and a gameover screen. No much difficulty in implementing those, just a matter of controlling some global variables.
+
+![gameover](report-assets/gameover.png "gameover")
+
+![options](report-assets/options.png "options")
+
+## Finish!!

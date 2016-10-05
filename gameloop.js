@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 "use strict";
 
-const VERSION = "v1.1-beta";
+const VERSION = "v1.0";
 // keyboard handler
 let Key = {
   _pressed: {},
@@ -52,6 +52,12 @@ let startScreen = {}
 let enemyScreen = {}
 let versusScreen = {}
 let creditsScreen = {}
+let gameoverScreen = {}
+let roundsScreen = {}
+
+let gameMode = "versus";
+let winner = false;
+let rounds = 5;
 
 // sound factory
 function soundFactory(audio, start, stop) {
