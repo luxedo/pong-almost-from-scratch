@@ -222,14 +222,17 @@ startScreen.draw = function() {
   let o1 = "1P START";
   let o2 = "2P START";
   let o3 = "CREDITS";
-  let b1 = "ENTER - GO            ESC - GO BACK"
+  let b1 = "ENTER - GO                       ESC - GO BACK"
+  let b2 = "PLAYER1 - W/S                PLAYER2 - UP/DOWN"
   let menuSize = 5;
+  let hintSize = 3;
   writeText((Game.width-t1.length*4*gridSize)/2, gridSize*5, t1);
   writeText((Game.width-t2.length*4*gridSize)/2, gridSize*12, t2);
   writeText((Game.width-o1.length*4*menuSize)/2, gridSize*25, o1, menuSize);
   writeText((Game.width-o2.length*4*menuSize)/2, gridSize*30, o2, menuSize);
   writeText((Game.width-o3.length*4*menuSize)/2, gridSize*35, o3, menuSize);
-  writeText((Game.width-b1.length*4*menuSize)/2, Game.height-gridSize*5, b1, menuSize);
+  writeText((Game.width-b1.length*4*hintSize)/2, Game.height-gridSize*7, b1, hintSize);
+  writeText((Game.width-b2.length*4*hintSize)/2, Game.height-gridSize*5, b2, hintSize);
   startScreen.cursor.draw();
 }
 
@@ -252,6 +255,8 @@ creditsScreen.init = () => {
   let m3 = "You can find more information about the project in it's";
   let m4 = "github page:";
   let m5 = "https://github.com/ArmlessJohn404/pong-almost-from-scratch"
+  let m6 = "Thanks to noisecollector, projectsu012 and n-audioman for"
+  let m7 = "the sounds."
   let b1 = "Copyright (C) 2016  Luiz Eduardo Amaral"
   let b2 = "<luizamaral306(at)gmail.com>"
   let b3 = "This software is under a GNU GPL3 license. Have fun! :)"
@@ -263,6 +268,8 @@ creditsScreen.init = () => {
   writeText(50, gridSize*5+creditsTitleSize*21+creditsSize*21, m3, creditsSize);
   writeText(50, gridSize*5+creditsTitleSize*21+creditsSize*28, m4, creditsSize);
   writeText(50, gridSize*5+creditsTitleSize*21+creditsSize*42, m5, creditsSize);
+  writeText(50, gridSize*5+creditsTitleSize*21+creditsSize*56, m6, creditsSize);
+  writeText(50, gridSize*5+creditsTitleSize*21+creditsSize*63, m7, creditsSize);
   writeText(50, Game.height-(gridSize*5+creditsSize*21), b1, creditsSize);
   writeText(50, Game.height-(gridSize*5+creditsSize*14), b2, creditsSize);
   writeText(50, Game.height-(gridSize*5+creditsSize*7), b3, creditsSize);

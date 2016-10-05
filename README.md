@@ -58,7 +58,7 @@ The `favicon.ico` was created using GIMP:
 The canvas is created in the `javascript`.
 
 I'll be using an ancient post from [Arthur Schreiber
-](http://nokarma.org/2011/02/02/javascript-game-development-the-game-loop/index.html) as our base for the gameloop and keyboard input.
+](http://nokarma.org/2011/02/02/javascript-game-development-the-game-loop/index.html) as a base for the gameloop and keyboard input.
 ```javascript
 "use strict"
 let Game = {
