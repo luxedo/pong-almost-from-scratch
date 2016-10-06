@@ -52,6 +52,11 @@ versusScreen.draw = function() {
   Game.ball.draw();
   Game.player1.draw();
   Game.player2.draw();
+  // pause if not in focus
+  if (!document.hasFocus()) {
+    drawSquare(boardWidth/2-11*gridSize, boardHeight/2-10*gridSize, gridSize*25, "#FFF")
+    writeText(boardWidth/2-10*gridSize, boardHeight/2, "PAUSED", gridSize, "#000")
+  }
 };
 
 versusScreen.update = function() {
@@ -59,6 +64,9 @@ versusScreen.update = function() {
     Game.changeState(startScreen)
     Game.blip4();
   };
+  if (!document.hasFocus()) {
+    return
+  }
   Game.ball.update();
   Game.player1.update();
   Game.player2.update();
@@ -110,7 +118,8 @@ versusScreen.spawnBall = function(side) {
   let center = Game.width/2-gridSize/2;
   let randomHeight = Math.random()*(boardHeight-3*gridSize)+borderTop+gridSize
   Game.ball = new Ball(center, randomHeight, 0, angle, borderTop, borderBottom-gridSize);
-  setTimeout(() => Game.ball.speed = ballSpeed, 500)
+  setTimeout(() => Game.ball.speed = ballSpeed/2, 500)
+  setTimeout(() => Game.ball.speed = ballSpeed, 2000)
 }
 
 // enemy screen
@@ -126,9 +135,13 @@ enemyScreen.draw = versusScreen.draw;
 
 enemyScreen.update = () => {
   // enemy AI
+  let diffStep;
+  if (difficulty === difficultyArr[0]) diffStep = paddleStep/3;
+  else if (difficulty === difficultyArr[1]) diffStep = paddleStep;
+  else if (difficulty === difficultyArr[2]) diffStep = paddleStep*3;
   let centerDelta = Game.ball.y+gridSize/2 - Game.player2.y - paddleLength/2
-  if (Math.abs(centerDelta) > 10) {
-    Game.player2.y += paddleStep*(centerDelta>0?1:-1);
+  if (Math.abs(centerDelta) > diffStep) {
+    Game.player2.y += diffStep*(centerDelta>0?1:-1);
   } else {
     Game.player2.y += centerDelta;
   }

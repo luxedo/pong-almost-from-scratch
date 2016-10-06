@@ -61,6 +61,8 @@ startScreen.draw = function() {
 startScreen.update = function() {
   startScreen.cursor.update()
   if (Key.isDown(13)) {
+    if (Game.keyTimeout > Date.now()) return
+    Game.keyTimeout = Date.now()+200;
     Game.blip4();
     if (startScreen.cursor.current === 0) Game.changeState(enemyScreen);
     else if (startScreen.cursor.current === 1) Game.changeState(versusScreen);
@@ -153,13 +155,13 @@ gameoverScreen.update = function() {
 
 // rounds screen
 roundsScreen.init = function() {
-  roundsScreen.timeout = Date.now() + 100;
   let cursorWidth = gridSize*20;
   let cursorHeight = gridSize*4;
   let cursorThickness = 5;
   let positions = [
     [(Game.width-cursorWidth-2*cursorThickness)/2, gridSize*28.5],
-    [(Game.width-cursorWidth-2*cursorThickness)/2, gridSize*33.5]
+    [(Game.width-cursorWidth-2*cursorThickness)/2, gridSize*33.5],
+    [(Game.width-cursorWidth-2*cursorThickness)/2, gridSize*38.5]
   ]
   roundsScreen.cursor = new Cursor(cursorWidth, cursorHeight, positions, cursorThickness)
 }
@@ -168,15 +170,17 @@ roundsScreen.draw = function() {
   Game.context.clearRect(0, 0, Game.width, Game.height);
   let t1 = "OPTIONS";
   let t2 = String(rounds);
-  let o2 = "ROUNDS";
+  let o1 = "ROUNDS";
+  let o2 = "AI "+difficulty;
   let o3 = "MENU";
   let b3 = VERSION;
   let menuSize = 5;
   let hintSize = 3;
   writeText((Game.width-t1.length*4*gridSize)/2, gridSize*10, t1);
   writeText((Game.width-t2.length*4*gridSize)/2, gridSize*22, t2);
-  writeText((Game.width-o2.length*4*menuSize)/2, gridSize*30, o2, menuSize);
-  writeText((Game.width-o3.length*4*menuSize)/2, gridSize*35, o3, menuSize);
+  writeText((Game.width-o1.length*4*menuSize)/2, gridSize*30, o1, menuSize);
+  writeText((Game.width-o2.length*4*menuSize)/2, gridSize*35, o2, menuSize);
+  writeText((Game.width-o3.length*4*menuSize)/2, gridSize*40, o3, menuSize);
   writeText((Game.width-b3.length*4*hintSize)/2, Game.height-hintSize*14, b3, hintSize);
   roundsScreen.cursor.draw();
 }
@@ -184,17 +188,19 @@ roundsScreen.draw = function() {
 roundsScreen.update = function() {
   roundsScreen.cursor.update()
   if (Key.isDown(13)) {
-    if (roundsScreen.cursor.current === 1) setTimeout(()=>Game.changeState(startScreen), 100);
-    else if (roundsScreen.cursor.current === 0) {
-      if (roundsScreen.timeout < Date.now()) {
-        Game.blip4();
-        roundsScreen.timeout = Date.now()+200;
-        rounds += 1;
-        if (rounds > 15) rounds = 2;
-      }
+    if (Game.keyTimeout > Date.now()) return
+    Game.keyTimeout = Date.now()+200;
+    Game.blip4();
+    if (roundsScreen.cursor.current === 2) Game.changeState(startScreen);
+    else if (roundsScreen.cursor.current === 1) {
+      difficulty = difficultyArr[(difficultyArr.indexOf(difficulty)+1)%difficultyArr.length]
+    } else if (roundsScreen.cursor.current === 0) {
+      rounds += 1;
+      if (rounds === 16) rounds = Infinity;
+      else if (rounds > 16) rounds = 2;
     }
   } else if (Key.isDown(27)) {
     Game.blip4();
-    setTimeout(()=>Game.changeState(startScreen), 100)
+    Game.changeState(startScreen)
   }
 }

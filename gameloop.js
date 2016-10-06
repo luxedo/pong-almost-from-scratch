@@ -19,19 +19,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 "use strict";
 
-const VERSION = "v1.0";
+const VERSION = "v1.1";
 // keyboard handler
 let Key = {
   _pressed: {},
+  _single: {},
   isDown: function(keyCode) {return this._pressed[keyCode]},
   onKeydown: function(event) {this._pressed[event.keyCode] = true},
-  onKeyup: function(event) {delete this._pressed[event.keyCode]}
+  onKeyup: function(event) {delete this._pressed[event.keyCode]},
 };
-window.addEventListener('keyup', function(event) { Key.onKeyup(event); }, false);
-window.addEventListener('keydown', function(event) { Key.onKeydown(event); }, false);
-// prevent default
+window.addEventListener('keyup', (event) => { Key.onKeyup(event) }, false);
 window.addEventListener("keydown", (event) => {
-    if([32, 37, 38, 39, 40].indexOf(event.keyCode) > -1) {event.preventDefault()}
+  Key.onKeydown(event);
+  if([32, 37, 38, 39, 40].indexOf(event.keyCode) > -1) {event.preventDefault()}
 }, false);
 
 // Game object
@@ -56,6 +56,8 @@ let gameoverScreen = {}
 let roundsScreen = {}
 
 let gameMode = "versus";
+let difficultyArr = ["n00b", "medium", "unfair"];
+let difficulty = difficultyArr[1];
 let winner = false;
 let rounds = 5;
 
@@ -104,6 +106,7 @@ Game.start = function() {
 };
 
 Game.changeState = function(screen) {
+  Game.keyTimeout = Date.now() + 200;
   screen.init();
   Game.draw = screen.draw;
   Game.update = screen.update;

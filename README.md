@@ -166,7 +166,7 @@ The `Ball` class also inhertits from `BaseSprite`. They contain two extra proper
 ![ball](report-assets/ball.gif "ball")
 
 ## 08:00 - Collision mechanics
-Since all the sprites are rectangles, the collision detection will be made with simple `if` statements, as described in [MDN](https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection).
+Since all the sprites are rectangles, the collision detection was made with simple `if` statements, as described in [MDN](https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection).
 The collision is checked in the update methods. If the collision occurs in the left or right side of the ball, it means that it has hit the paddles, the calculation of the direction is a little bit different.
 
 ![collision](report-assets/collision.gif "collision")
@@ -195,7 +195,7 @@ The game mode in which the player plays against an AI borrows all the methods fr
 ```
 
 ## 11:40 - Sounds
-The sounds are some free `wav` files i've found at [Freesound.org](https://www.freesound.org).
+The sounds are some free `wav` files I've found at [Freesound.org](https://www.freesound.org).
 Thanks to `noisecollector`, `projectsu012` and `n-audioman`.
 I used `HTMLMediaElements` to play the sounds.
 ```javascript
@@ -244,3 +244,21 @@ Since I said I'll be dedicating 24h to this project, I plan to release one patch
 Thanks again to the guys that provided the audio assets for free and to the playtesters.
 
 #### Bye!
+
+## 20:00? - Requests for the patch
+* ~~Pause game when out of focus - `Pagode`~~
+* ~~Initial ball too fast - `Karkão`~~
+* ~~Endless game mode - `Ule`~~
+* ~~More AI options - `me`~~
+* ~~Fix buggy transitions - `me`~~
+
+## 24:00? - Final release
+Today, October 5th, 2016 at 23:15 (BRT) I lost track of time somewhere in the afternoon. I haven't worked all day on the game. I'll consider it finished, even if I did not spent 24h on it.
+
+I received some feedback from friends and fixed some bugs. I'm now releasing a patch with some changes.
+
+Now, the game pauses when the window is out of focus, the ball starts slower and I've added an endless gamemode and three difficulties of AI in the options.
+
+![new options](report-assets/new-options.gif "new options")
+
+#### Thanks and Bye Again!
