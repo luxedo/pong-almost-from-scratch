@@ -1,7 +1,7 @@
 # PONG ALMOST FROM SCRATCH
 This is an attempt of making the game pong using modern programming languages. The idea is to time the development and track the progress and the time it took to get in each stage in this document. If possible I want to finish this project in under 24 h.
 
-Check it out [here](https://armlessjohn404.github.io/pong-almost-from-scratch/)
+#### Check it out [here](https://armlessjohn404.github.io/pong-almost-from-scratch/)
 
 The game is based in html5/canvas, CSS and ES6 javascript.
 
@@ -133,6 +133,7 @@ let alphabeth = {
   "H": [[1, 0, 1],[1, 0, 1],[1, 1, 1],[1, 0, 1],[1, 0, 1]],
   "I": [[0, 1, 0],[0, 1, 0],[0, 1, 0],[0, 1, 0],[0, 1, 0]],
   ...
+}
 ```
 
 I changed a little bit the numbers `2`, `3`, `5` and `6` from the original just because I can.
