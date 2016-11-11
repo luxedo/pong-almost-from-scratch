@@ -31,9 +31,6 @@ function drawSquare(x, y, size=gridSize, color="#FFF") {
   Game.context.fillStyle = color;
   Game.context.fillRect(x, y, size, size);
   Game.context.shadowColor = color;
-  Game.context.shadowOffsetX = 0;
-  Game.context.shadowOffsetY = 0;
-  Game.context.shadowBlur = 5;
 }
 
 function drawMatrix(x, y, matrix, size=gridSize, color="#FFF") {

@@ -100,7 +100,10 @@ Game.start = function() {
 
   document.getElementById("game-frame").appendChild(Game.canvas); // Add canvas to game-frame
 
-  Game.context = Game.canvas.getContext("2d"); // Get canvas 
+  Game.context = Game.canvas.getContext("2d"); // Get canvas
+  Game.context.shadowOffsetX = 0;
+  Game.context.shadowOffsetY = 0;
+  Game.context.shadowBlur = 5;
   Game.changeState(startScreen)
   Game._onEachFrame(Game.run);
 };
