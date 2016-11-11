@@ -100,7 +100,7 @@ Game.start = function() {
 
   document.getElementById("game-frame").appendChild(Game.canvas); // Add canvas to game-frame
 
-  Game.context = Game.canvas.getContext("2d"); // Get canvas context
+  Game.context = Game.canvas.getContext("2d"); // Get canvas 
   Game.changeState(startScreen)
   Game._onEachFrame(Game.run);
 };
