@@ -1,7 +1,7 @@
 # PONG ALMOST FROM SCRATCH
 This is an attempt of making the game pong using modern programming languages. The idea is to time the development and track the progress and the time it took to get in each stage in this document. If possible I want to finish this project in under 24 h.
 
-#### Check it out [here](https://armlessjohn404.github.io/pong-almost-from-scratch/)
+#### Check it out [here](https://luxedo.github.io/pong-almost-from-scratch/)
 
 The game is based in html5/canvas, CSS and ES6 javascript.
 
@@ -102,7 +102,7 @@ So, here is the first view of the game:
 
 ### 01:10 - Host somewhere
 
-For now, I'll be hosting it in [github pages](https://pages.github.com/) since it's easy deploy. Check it out [here](https://armlessjohn404.github.io/pong-almost-from-scratch/)
+For now, I'll be hosting it in [github pages](https://pages.github.com/) since it's easy deploy. Check it out [here](https://luxedo.github.io/pong-almost-from-scratch/)
 
 ### 03:20 - Crate rendering functions
 

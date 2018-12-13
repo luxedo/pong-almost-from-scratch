@@ -79,7 +79,7 @@ creditsScreen.init = () => {
   let m2 = "programming languages. The AI enemy is vicious!"
   let m3 = "You can find more information about the project in it's";
   let m4 = "github page:";
-  let m5 = "https://github.com/ArmlessJohn404/pong-almost-from-scratch"
+  let m5 = "https://github.com/luxedo/pong-almost-from-scratch"
   let m6 = "Thanks to noisecollector, projectsu012 and n-audioman for"
   let m7 = "the sounds."
   let m8 = "Thanks to the playtesters Luciane, Marcelo and Ulisses."
