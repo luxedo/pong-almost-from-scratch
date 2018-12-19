@@ -56,7 +56,7 @@ The `html` file was created based on a simple template.
 ```
 
 The `favicon.ico` was created using GIMP:
-![favicon](https://raw.githubusercontent.com/luxedo/pong-almost-from-scratch/master/report-assets/favicon.png "favicon")
+![favicon](report-assets/favicon.png "favicon")
 
 The canvas is created in the `javascript`.
 
@@ -98,7 +98,7 @@ html {
 ```
 So, here is the first view of the game:
 #### Hello world!
-![hello-world!](https://raw.githubusercontent.com/luxedo/pong-almost-from-scratch/master/report-assets/hello-world.png "hello-world!")
+![hello-world!](report-assets/hello-world.png "hello-world!")
 
 ### 01:10 - Host somewhere
 
@@ -118,7 +118,7 @@ Another three functions uses this drawing function to speed up the development:
 * `writeText` which receives a string and uses `drawMatrix` and an alphabeth to draw the text.
 * `drawLine` which receives two coordinates and draws a line between them.
 
-![first render](https://raw.githubusercontent.com/luxedo/pong-almost-from-scratch/master/report-assets/first-render.png "first render")
+![first render](report-assets/first-render.png "first render")
 
 The letters were created in a separate file. Each letter is a boolean 5x3 matrix and is mono spaced.
 ```javascript
@@ -144,40 +144,40 @@ The gameloop is the engine that keeps rendering the graphics on screen.
 The gameloop was based on [Arthur Schreiber's
 ](http://nokarma.org/2011/02/02/javascript-game-development-the-game-loop/index.html) post with some tweaks. With that, I can get the player's input and update the screen.
 
-![gameloop](https://raw.githubusercontent.com/luxedo/pong-almost-from-scratch/master/report-assets/gameloop.gif "gameloop")
+![gameloop](report-assets/gameloop.gif "gameloop")
 
 ### 04:20 - Board Design
 The board for the game are just two horizontal lines and a dashed line in the center.
 
-![game-board](https://raw.githubusercontent.com/luxedo/pong-almost-from-scratch/master/report-assets/game-board.png "game-board")
+![game-board](report-assets/game-board.png "game-board")
 
 ## 05:10 - Scoring system
 For the scoring system, an object was created that draws the score in the screen when it's `draw` method is called and it's easy to update the values. It inherits some properties from a class called `BaseSprite`, that may be updated in the future. There's two important methods in these classes, the `update` method, that recalculates the new postion for the sprite and the `draw` method which draws the sprite in the screen.
 
-![scoring system](https://raw.githubusercontent.com/luxedo/pong-almost-from-scratch/master/report-assets/score.gif "scoring system")
+![scoring system](report-assets/score.gif "scoring system")
 
 ## 05:30 - Paddle class
 The `Paddle` class also inhertits from `BaseSprite`. Two instances of the paddles are created in the game, they bind to the keys `W` and `S` for player1 and `up arrow` and `down arrow` for player2.
 
-![paddles](https://raw.githubusercontent.com/luxedo/pong-almost-from-scratch/master/report-assets/paddle.gif "paddles")
+![paddles](report-assets/paddle.gif "paddles")
 
 ## 05:55 - Ball class
 The `Ball` class also inhertits from `BaseSprite`. They contain two extra properties: `speed` and `direction` to make it move in the screen.
 
-![ball](https://raw.githubusercontent.com/luxedo/pong-almost-from-scratch/master/report-assets/ball.gif "ball")
+![ball](report-assets/ball.gif "ball")
 
 ## 08:00 - Collision mechanics
 Since all the sprites are rectangles, the collision detection was made with simple `if` statements, as described in [MDN](https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection).
 The collision is checked in the update methods. If the collision occurs in the left or right side of the ball, it means that it has hit the paddles, the calculation of the direction is a little bit different.
 
-![collision](https://raw.githubusercontent.com/luxedo/pong-almost-from-scratch/master/report-assets/collision.gif "collision")
+![collision](report-assets/collision.gif "collision")
 
 ## 10:00 - Start screen/ credits screen
 For splitting the screens into game states, I created objects with `init`, `draw` and `update` methods corresponding with each screen. Also a function that overwrites the gameloop's corresponding methods. Then it's just a matter of calling this function and passing the corresponding screen object to change the screen/state.
 
-![start screen](https://raw.githubusercontent.com/luxedo/pong-almost-from-scratch/master/report-assets/start-screen.png "start screen")
+![start screen](report-assets/start-screen.png "start screen")
 
-![credits screen](https://raw.githubusercontent.com/luxedo/pong-almost-from-scratch/master/report-assets/credits-screen.png "credits screen")
+![credits screen](report-assets/credits-screen.png "credits screen")
 
 ## 11:00 - Enemy AI
 The game mode in which the player plays against an AI borrows all the methods from the 2 player mode, but it removes the key bindings for the `player2` and extends the `update` method with the following:
@@ -223,7 +223,7 @@ With minor tweaks, the game was released. I'll be listing the requested bugs an 
 ## 13:40 - Improved webpage
 The webpage received a footer element and a few CSS to make it even neater.
 
-![new webpage](https://raw.githubusercontent.com/luxedo/pong-almost-from-scratch/master/report-assets/new-webpage.png "new webpage")
+![new webpage](report-assets/new-webpage.png "new webpage")
 
 ## 15:50 - Fixed the requests
 Thanks to the playtesters `Luh`, `Pagode` and `Ule` for giving feedback.
@@ -231,9 +231,9 @@ Thanks to the playtesters `Luh`, `Pagode` and `Ule` for giving feedback.
 ## 16:40 - Add gameover
 Since there's no point in playing forever, I added two more screens, one to chose the number of rounds and a gameover screen. No much difficulty in implementing those, just a matter of controlling some global variables.
 
-![gameover](https://raw.githubusercontent.com/luxedo/pong-almost-from-scratch/master/report-assets/gameover.png "gameover")
+![gameover](report-assets/gameover.png "gameover")
 
-![options](https://raw.githubusercontent.com/luxedo/pong-almost-from-scratch/master/report-assets/options.png "options")
+![options](report-assets/options.png "options")
 
 ## 17:00 - Finish!!
 Well, that was quite fun indeed. It's been a steep learning curve in several subjects.
@@ -260,6 +260,6 @@ I received some feedback from friends and fixed some bugs. I'm now releasing a p
 
 Now, the game pauses when the window is out of focus, the ball starts slower and I've added an endless gamemode and three difficulties of AI in the options.
 
-![new options](https://raw.githubusercontent.com/luxedo/pong-almost-from-scratch/master/report-assets/new-options.gif "new options")
+![new options](report-assets/new-options.gif "new options")
 
 #### Thanks and Bye Again!
